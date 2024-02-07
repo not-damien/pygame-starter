@@ -11,7 +11,8 @@ font = pygame.font.Font(None, 64)
 def main():
     # pygame setup    
     p1 = PlayerWasd("./exampleShroom.png")
-    allsprites = pygame.sprite.RenderPlain(p1)
+    p2 = PlayerMouse("./sprite.png")
+    allsprites = pygame.sprite.RenderPlain((p1,p2))
     running = True
     while running:
         # poll for events
@@ -35,6 +36,19 @@ def main():
         clock.tick(60)  # limits FPS to 60
 
     pygame.quit()
+
+
+class PlayerMouse(pygame.sprite.Sprite):
+    def __init__(self, image):
+        pygame.sprite.Sprite.__init__(self)
+        self.speed = 15
+        self.image, self.rect = load_image(image,scale=.1)#adjust scale to get character sizing right
+        self.rect.topleft = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)#adjust arugments for disired starting position
+    def update(self):
+        pos = pygame.mouse.get_pos()
+        self.rect.topleft = pos
+
+
 
 
 
