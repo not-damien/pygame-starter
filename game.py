@@ -6,6 +6,11 @@ pygame.display.set_caption("Name Of The game")
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 64)
 
+def writeToScreen(msg, x, y):
+        text = font.render(msg, True, (10, 10, 10))
+        textpos = text.get_rect(centerx=x, y=y)
+        screen.blit(text, textpos)
+
 
 
 class PlayerMouse(pygame.sprite.Sprite):
